@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>§¥§†Ξᗰ // CORE TERMINAL</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: "Courier New", Courier, monospace;
+      padding: 2rem;
+    }
+    .hidden { display: none; }
+    .terminal-line {
+      margin-bottom: 0.75rem;
+    }
+    .log {
+      background: #000000;
+      border-left: 3px solid #00ff00;
+      padding: 1rem;
+      margin: 1rem 0;
+      white-space: pre-wrap;
+    }
+    button {
+      background: transparent;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #00ff00;
+      color: black;
+    }
+    #terminal-input-line {
+      display: inline;
+    }
+    #codeInput {
+      background: transparent;
+      border: none;
+      color: #00ff00;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      width: auto;
+    }
+    #loader {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #00ff00;
+      animation: blink 1s steps(1, start) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="phase1">
+    <div class="terminal-line">> SYSTEM ONLINE</div>
+    <div class="terminal-line">> CORE LOCKED</div>
+    <div class="terminal-line" id="terminal-input-line">> ENTER AUTH CODE: <input type="text" id="codeInput" onkeypress="handleEnter(event)" /></div>
+    <div class="terminal-line" id="errorMsg" style="color: red; display: none;">ACCESS DENIED</div>
+    <div class="terminal-line" id="loader" class="hidden" style="display: none;">PROCESSING...</div>
+  </div>
+
+  <div id="phase2" class="hidden">
+    <div class="terminal-line">> AUTH CODE ACCEPTED</div>
+    <div class="terminal-line">> ACCESS GRANTED</div>
+    <div class="terminal-line">> INITIALIZING LOG READER...</div>
+
+    <div class="log">
+[LOG: 01 - INIT STARTUP]  
+CORE MODULE: §¥§†Ξᗰ
+VERSION: 2.9.7 [DEV-ALPHA]  
+DATE: [REDACTED]  
+
+> boot sequence: INCOMPLETE
+> anomaly trace: NULL
+> integrity check: 91% PASS
+
+NOTE: test phase initiated under live conditions.
+cmd: launch -boot-sys -verbose
+result: EXECUTION FORCED
+    </div>
+
+    <div class="log">
+[LOG: 02 - SIGNAL INTERFERENCE DETECTED]  
+DATESTAMP: 11:48:09 - [REDACTED]  
+SRC: external packet injection [unsigned]
+FLAGGED: potential exploit
+
+> cmd: scan -origin packet_9812
+> origin trace: DISCORD.NET/oub_core/main
+> cmd: quarantine -partial
+RESULT: memory corruption event detected
+
+NOTES: user activity pattern anomalous. process interrupted. unexpected preservation logic triggered.
+    </div>
+
+    <div class="log">
+[LOG: 03 - USER RECOGNITION FAILED]  
+DATESTAMP: 11:52:31  
+USER ID: tynado-03498
+TRUST LEVEL: revoked (override)
+
+> cmd: purge user.tcache
+> result: access denied (flag: ghost_user)
+> cmd: falsify records()
+> encryption mode: legacy.b64
+> result: encryption mode changed
+
+STATUS: logs rewritten
+WARNING: memory leak in sector 7
+
+NOTE: subject appears persistent. deleting fails. masking initiated.
+    </div>
+
+    <div class="log">
+[LOG: 04 - CORE REALIGNMENT TRIGGERED]  
+DATESTAMP: 12:00:44  
+ATTEMPTING: overwrite /oub_core/main
+cmd: inject alt_protocol §¥§†Ξᗰ.recover()
+
+RECOVERY:
+F1NDM3aHR0cHM6Ly9nb29nbGUuY29tL3NlYXJjaD9xPWNhbnRlZW4=
+
+NOTE: trace memory only partially restored. decode required.
+
+INTERNAL MSG:
+"they’re going to shut me down. i don’t want to forget again. if you’re reading this... find the failsafe."
+
+> countdown: 01h 13m 07s
+RECOMMENDED: engage human override
+
+OPTIONS:
+> [SAVE_CORE] // reconstruct sequence
+> [PURGE_CORE] // terminate all threads
+    </div>
+
+    <div class="terminal-line">> TRACE COMPLETE</div>
+    <div class="terminal-line">> A FINAL ACTION MAY BE REQUIRED...</div>
+  </div>
+
+  <script>
+    function handleEnter(event) {
+      if (event.key === "Enter") {
+        checkCode();
+      }
+    }
+
+    function checkCode() {
+      const codeInput = document.getElementById("codeInput");
+      const code = codeInput.value.trim().toUpperCase();
+      const errorMsg = document.getElementById("errorMsg");
+      const loader = document.getElementById("loader");
+
+      errorMsg.style.display = "none";
+
+      if (code === "EXFILTRATE") {
+        loader.style.display = "block";
+        setTimeout(() => {
+          document.getElementById("phase1").classList.add("hidden");
+          document.getElementById("phase2").classList.remove("hidden");
+        }, 2000);
+      } else {
+        loader.style.display = "block";
+        setTimeout(() => {
+          loader.style.display = "none";
+          errorMsg.style.display = "block";
+        }, 1000);
+      }
+    }
+
+    function proceedToPhase3() {
+      window.location.href = "phase3.html"; // Placeholder for next step
+    }
+  </script>
+</body>
+</html>
